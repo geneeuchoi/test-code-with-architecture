@@ -14,5 +14,7 @@ public interface UserRepository {
 
     Optional<User> findById(long id);
 
+    User getById(long id);
+
     User save(User user);
 }
