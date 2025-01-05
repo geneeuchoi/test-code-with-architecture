@@ -3,6 +3,7 @@ package com.example.demo.post.controller;
 import com.example.demo.post.domain.PostCreate;
 import com.example.demo.post.controller.response.PostResponse;
 import com.example.demo.post.service.PostService;
+import com.example.demo.user.controller.response.MyProfileResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -19,12 +20,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class PostCreateController {
 
     private final PostService postService;
-    private final PostController postController;
 
     @PostMapping
     public ResponseEntity<PostResponse> createPost(@RequestBody PostCreate postCreate) {
         return ResponseEntity
             .status(HttpStatus.CREATED)
-            .body(postController.toResponse(postService.create(postCreate)));
+            .body(PostResponse.from(postService.create(postCreate)));
     }
 }
