@@ -4,7 +4,6 @@ import com.example.demo.common.domain.exception.ResourceNotFoundException;
 import com.example.demo.mock.TestContainer;
 import com.example.demo.post.controller.response.PostResponse;
 import com.example.demo.post.domain.Post;
-import com.example.demo.post.domain.PostCreate;
 import com.example.demo.post.domain.PostUpdate;
 import com.example.demo.user.domain.User;
 import com.example.demo.user.domain.UserStatus;
@@ -44,7 +43,7 @@ class PostControllerTest {
                 .build());
 
         // when
-        ResponseEntity<PostResponse> result =  testContainer.postController.getPostById(1L);
+        ResponseEntity<PostResponse> result =  testContainer.postController.getById(1L);
 
         // then
         assertThat(result.getStatusCode()).isEqualTo(HttpStatusCode.valueOf(200));
@@ -64,7 +63,7 @@ class PostControllerTest {
         // when
         // then
         assertThatThrownBy(
-                () -> testContainer.postController.getPostById(2L)
+                () -> testContainer.postController.getById(2L)
         ).isInstanceOf(ResourceNotFoundException.class);
     }
 
@@ -98,7 +97,7 @@ class PostControllerTest {
                 .build();
 
         // when
-        ResponseEntity<PostResponse> result =  testContainer.postController.updatePost(1L, postUpdate);
+        ResponseEntity<PostResponse> result =  testContainer.postController.update(1L, postUpdate);
 
         // then
         assertThat(result.getStatusCode()).isEqualTo(HttpStatusCode.valueOf(200));

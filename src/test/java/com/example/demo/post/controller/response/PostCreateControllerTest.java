@@ -4,8 +4,6 @@ import com.example.demo.mock.*;
 import com.example.demo.post.domain.PostCreate;
 import com.example.demo.user.domain.User;
 import com.example.demo.user.domain.UserStatus;
-import com.example.demo.user.service.CertificationService;
-import com.example.demo.user.service.UserServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
@@ -36,7 +34,7 @@ public class PostCreateControllerTest {
                 .build();
 
         // when
-        ResponseEntity<PostResponse> result =  testContainer.postCreateController.createPost(postCreate);
+        ResponseEntity<PostResponse> result =  testContainer.postCreateController.create(postCreate);
 
         // then
         assertThat(result.getStatusCode()).isEqualTo(HttpStatusCode.valueOf(201));
